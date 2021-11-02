@@ -19,6 +19,12 @@ const Users = () => {
                     }
                 )}
             />
+            <Button
+                title='Change Header'
+                onPress={() => navigation.setOptions({
+                    title: 'New Header'
+                })}
+            />
         </View>
     );
 }

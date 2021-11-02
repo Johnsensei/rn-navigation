@@ -8,16 +8,40 @@ import Users from './src/Users';
 
 const Stack = createStackNavigator();
 
+const defaultHeader = {
+
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Home'
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'red',
+            borderBottomWidth: 6,
+            borderBottomColor: 'black',
+            color: 'white'
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+              fontWeight: 'bold',
+              fontStyle: 'italic',
+              textDecorationLine: 'line-through'
+          }
+        }}
+      >
         <Stack.Screen name='Home' component={Home}/>
         <Stack.Screen name='Users' component={Users}
-        initialParams={{
-          id: 1,
-          codeName: 'No Name'
-        }}/>
+          initialParams={{
+            id: 1,
+            codeName: 'No Name'
+          }}
+          options={{
+            title: 'All Users'
+          }}
+        
+        />
       </Stack.Navigator>
     </NavigationContainer> 
   );
