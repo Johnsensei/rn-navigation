@@ -5,11 +5,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/Home';
 import Users from './src/Users';
+import LogoTitle from './src/utils/LogoTitle';
 
 const Stack = createStackNavigator();
 
 const defaultHeader = {
-
+  headerStyle: {
+    backgroundColor: 'red',
+    borderBottomWidth: 6,
+    borderBottomColor: 'black',
+    color: 'white',
+    
+  },
+  headerTitle: props => LogoTitle(props),
+  headerTitleAlign:'center',
+  headerTintColor: '#FFFFFF',
+  headerBackTitle: 'Back',
+  headerTitleStyle: {
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+      textDecorationLine: 'line-through'
+  }
 }
 
 export default function App() {
@@ -17,18 +33,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'
         screenOptions={{
-          headerStyle: {
-            backgroundColor: 'red',
-            borderBottomWidth: 6,
-            borderBottomColor: 'black',
-            color: 'white'
-          },
-          headerTintColor: '#FFFFFF',
-          headerTitleStyle: {
-              fontWeight: 'bold',
-              fontStyle: 'italic',
-              textDecorationLine: 'line-through'
-          }
+          ...defaultHeader
         }}
       >
         <Stack.Screen name='Home' component={Home}/>
@@ -38,7 +43,8 @@ export default function App() {
             codeName: 'No Name'
           }}
           options={{
-            title: 'All Users'
+            //headerTitle: props => LogoTitle(props)
+            //title: 'All Users'
           }}
         
         />
