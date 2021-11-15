@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,67 +9,34 @@ import Home from './src/Home';
 import Users from './src/Users';
 import LogoTitle from './src/utils/LogoTitle';
 
-const Stack = createStackNavigator();
-
-const defaultHeader = {
-  headerStyle: {
-    backgroundColor: 'red',
-    borderBottomWidth: 6,
-    borderBottomColor: 'black',
-    color: 'white',
-    
-  },
-  headerTitle: props => LogoTitle(props),
-  headerTitleAlign:'center',
-  headerTintColor: '#FFFFFF',
-  headerBackTitle: 'Back',
-  headerTitleStyle: {
-      fontWeight: 'bold',
-      fontStyle: 'italic',
-      textDecorationLine: 'line-through'
-  }
-}
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'
+      <Drawer.Navigator
+        defaultStatus={"closed"}
+        initialRouteName="Home"
         screenOptions={{
-          ...defaultHeader
+          drawerActiveTintColor: "red",
+          drawerItemStyle: {marginTop: 20},
+          drawerLabelStyle: {fontSize: 30},
+          drawerContentContainerStyle: {backgroundColor: "green"},
         }}
       >
-        <Stack.Screen name='Home' component={Home}/>
-        <Stack.Screen name='Users' component={Users}
+        <Drawer.Screen
+          name="Home"
+          component={Home}
+        />
+        <Drawer.Screen
+          name="Users"
+          component={Users}
           initialParams={{
             id: 1,
             codeName: 'No Name'
           }}
-          options={ ({navigation}) => (
-            {headerLeft: () =>
-                <Button
-                  title='Go Back'
-                  onPress={() => navigation.navigate("Home")}
-                />,}
-          )}
-            
-            
-          //   {
-          //   headerLeft: () =>
-          //   <Button
-          //     title='Do Less'
-          //     onPress={() => alert('Less')}
-          //   />,
-          //   headerRight: () =>
-          //   <Button
-          //     title='Do More'
-          //     onPress={() => alert('More')}
-          //   />,
-          //   //headerTitle: props => LogoTitle(props)
-          //   //title: 'All Users'
-          // }}
-        
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer> 
   );
 }
