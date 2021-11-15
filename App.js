@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import Home from './src/Home';
 import Users from './src/Users';
 import LogoTitle from './src/utils/LogoTitle';
@@ -42,10 +42,29 @@ export default function App() {
             id: 1,
             codeName: 'No Name'
           }}
-          options={{
-            //headerTitle: props => LogoTitle(props)
-            //title: 'All Users'
-          }}
+          options={ ({navigation}) => (
+            {headerLeft: () =>
+                <Button
+                  title='Go Back'
+                  onPress={() => navigation.navigate("Home")}
+                />,}
+          )}
+            
+            
+          //   {
+          //   headerLeft: () =>
+          //   <Button
+          //     title='Do Less'
+          //     onPress={() => alert('Less')}
+          //   />,
+          //   headerRight: () =>
+          //   <Button
+          //     title='Do More'
+          //     onPress={() => alert('More')}
+          //   />,
+          //   //headerTitle: props => LogoTitle(props)
+          //   //title: 'All Users'
+          // }}
         
         />
       </Stack.Navigator>
