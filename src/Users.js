@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { Text, View, Button } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native';
+// import { useIsDrawerOpen} from '@react-navigation/drawer'
 
 const Users = () => {
+    // const isDrawerOpen = useIsDrawerOpen();
     const navigation = useNavigation();
     const route = useRoute();
     const {id, codeName} = route.params;
@@ -18,6 +20,9 @@ const Users = () => {
             })
         }, 2000)
     },[navigation])
+
+    console.log(navigation);
+    // alert(isDrawerOpen)
 
     return(
         <View>
@@ -36,6 +41,10 @@ const Users = () => {
                 onPress={() => navigation.setOptions({
                     title: 'New Header'
                 })}
+            />
+            <Button
+                title='Open Drawer'
+                onPress={() => navigation.toggleDrawer()}
             />
         </View>
     );
